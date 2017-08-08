@@ -1,6 +1,6 @@
 #include "RIMS.h"
 
-unsigned char Getbit(unsigned char x, unsigned char k) {
+unsigned char GetBit(unsigned char x, unsigned char k) {
    return ((x & (0x01 << k)) != 0);
 }
 
