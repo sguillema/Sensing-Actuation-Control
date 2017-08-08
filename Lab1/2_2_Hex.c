@@ -1,3 +1,3 @@
-case 10: B = 0x3F;
-case 12: B = 0x53;
-case 13: B = 0x7C;
+case 10: B = 0x3F; // 0011 1111
+case 12: B = 0x53; // 0101 0011
+case 13: B = 0x7C; // 0111 1100
