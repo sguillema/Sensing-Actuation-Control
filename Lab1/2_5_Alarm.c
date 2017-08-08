@@ -1,4 +1,4 @@
-#include "rims.h"
+#include "RIMS.h"
 
 volatile unsigned char TimerFlag = 0;
 unsigned char soundCount = 0;
@@ -21,7 +21,7 @@ void main() {
       B0 = !B0;
       soundCount = 0;
     }
-    
+
     if (!(lightCount < 5)) {
       B1 = !B1;
       lightCount = 0;
