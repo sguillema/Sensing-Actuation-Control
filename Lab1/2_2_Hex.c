@@ -1,0 +1,3 @@
+case 10: B = 0x3F;
+case 12: B = 0x53;
+case 13: B = 0x7C;
