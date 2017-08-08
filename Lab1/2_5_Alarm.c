@@ -13,10 +13,10 @@ void TimerISR() {
 void main()
 {
    B = 0;
-   
+
    TimerSet(50);
    TimerOn();
-   
+
    while (1) {
       if (!(soundCount < 3)) {
          B0 = !B0;
@@ -30,3 +30,10 @@ void main()
       TimerFlag = 0;
    }
 }
+
+/*
+
+Does the sound work? Yes
+Does the light flash? Yes
+
+*/

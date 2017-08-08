@@ -30,3 +30,12 @@ int main() {
       }
    }
 }
+
+/*
+
+A = 0011 0000 ?   2 lights shifting
+A = 1111 1111 ?   8 lights shifting
+A = 1000 1111 ?   5 lights shifting
+A = 1000 1101 ?   4 lights shifting
+
+*/
