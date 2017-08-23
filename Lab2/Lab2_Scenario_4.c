@@ -1,6 +1,6 @@
 /*
 This code was automatically generated using the Riverside-Irvine State machine Builder tool
-Version 2.7 --- 8/16/2017 12:52:22 PST
+Version 2.7 --- 8/23/2017 11:26:9 PST
 */
 
 #include "rims.h"
@@ -12,52 +12,71 @@ void TimerISR() {
    SM1_Clk = 1;
 }
 
-enum SM1_States { SM1_DontWalk, SM1_WaitBut, SM1_Walk } SM1_State;
+enum SM1_States { SM1_Walk, SM1_DontWalk, SM1_BlinkDontWalk, SM1_TrafficFlow } SM1_State;
 
 TickFct_State_machine_1() {
    switch(SM1_State) { // Transitions
       case -1:
-         SM1_State = SM1_WaitBut;
+         SM1_State = SM1_DontWalk;
          break;
-         case SM1_DontWalk: 
-         if (cnt < 20;) {
-            SM1_State = SM1_WaitBut;
-         }
-         break;
-      case SM1_WaitBut: 
-         if (!A0) {
-            SM1_State = SM1_WaitBut;
-         }
-         else if (A0) {
-            SM1_State = SM1_Walk;
-            cnt = 0;
-         }
-         break;
-      case SM1_Walk: 
-         if (cnt < 20) {
+         case SM1_Walk: 
+         if (cnt < 12) {
             SM1_State = SM1_Walk;
             cnt++;
          }
          else {
-            SM1_State = SM1_DontWalk;
+            SM1_State = SM1_BlinkDontWalk;
             cnt = 0;
          }
          break;
+      case SM1_DontWalk: 
+         if (A0) {
+            SM1_State = SM1_Walk;
+            cnt = 0;
+         }
+         else if (!A0) {
+            SM1_State = SM1_DontWalk;
+         }
+         break;
+      case SM1_BlinkDontWalk: 
+         if (cnt < 8) {
+            SM1_State = SM1_BlinkDontWalk;
+            cnt++;
+         }
+         else {
+            SM1_State = SM1_TrafficFlow;
+            cnt = 0;
+         }
+         break;
+      case SM1_TrafficFlow: 
+         if (cnt < 30) {
+            SM1_State = SM1_TrafficFlow;
+            cnt++;
+         }
+         else {
+            SM1_State = SM1_DontWalk;
+         }
+         break;
       default:
-         SM1_State = SM1_WaitBut;
+         SM1_State = SM1_DontWalk;
    } // Transitions
 
    switch(SM1_State) { // State actions
-      case SM1_DontWalk:
-         B0 = 1;
-         B1 = 0;
-         cnt++;
-         break;
-      case SM1_WaitBut:
-         break;
       case SM1_Walk:
          B0 = 0;
          B1 = 1;
+         break;
+      case SM1_DontWalk:
+         B0 = 1;
+         B1 = 0;
+         break;
+      case SM1_BlinkDontWalk:
+         B1 = 0;
+         B0 = !B0;
+         break;
+      case SM1_TrafficFlow:
+         B0 = 1;
+         
          break;
       default: // ADD default behaviour below
       break;
